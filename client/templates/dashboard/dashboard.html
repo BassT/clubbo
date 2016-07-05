@@ -1,0 +1,22 @@
+<template name="dashboard">
+  {{#if Template.subscriptionsReady}}
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Anstehende Events</h1>
+        {{>teamSelectionParagraph}}
+        <div class="row">
+          {{#each event in events}}
+            {{>eventPanel event=event}}
+          {{/each}}
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-block btn-link" id="load-more">Weitere laden...</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    {{>loading}}
+  {{/if}}
+</template>

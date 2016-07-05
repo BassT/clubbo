@@ -1,0 +1,44 @@
+<template name="teamDetails">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>{{ name }}</h1>
+    </div>
+    <div class="col-md-4">
+      {{#if currentUserIsAdmin}}
+        <p class="text-right">
+          <button class="btn btn-default edit-team">Bearbeiten</button>
+        </p>
+      {{/if}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Mitglieder</h2>
+      <table id="members" class="table table-hover tablesorter linked-rows">
+        <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          {{#if currentUserIsAdmin}}<th>Admin?</th>{{/if}}
+        </tr>
+        </thead>
+        <tbody>
+        {{#each member in members}}
+          <tr data-user-id="{{ member._id }}">
+            <td>{{ member.profile.firstName }}</td>
+            <td>{{ member.profile.lastName }}</td>
+            {{#if currentUserIsAdmin}}
+              <td>
+                <button class="btn btn-xs {{ btnClass member._id}} admin">
+                  <span class="fa fa-check-circle"></span>
+                </button>
+              </td>
+            {{/if}}
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{>teamEditModal teamId=teamId}}
+</template>

@@ -1,0 +1,118 @@
+<template name="userForm">
+  <form>
+    <div class="row" style="margin-bottom: 1em">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="email">E-Mail *</label>
+          <input type="text" id="email" class="form-control" placeholder="E-Mail" value="{{user.emails.[0].address}}">
+        </div>
+      </div>
+      {{#if isCreate}}
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="password">Password *</label>
+            <input type="password" id="password" class="form-control" placeholder="xxxxxx">
+          </div>
+        </div>
+      {{/if}}
+    </div>
+    <div class="row" style="margin-bottom: 1em">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="first-name">Vorname</label>
+          <input type="text" id="first-name" class="form-control" placeholder="Vorname"
+                 value="{{user.profile.firstName}}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="last-name">Nachname</label>
+          <input type="text" id="last-name" class="form-control" placeholder="Nachname"
+                 value="{{user.profile.lastName}}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="phone">Telefon</label>
+          <input type="text" class="form-control" id="phone" placeholder="+49 xxx xxxxxxxx" value="{{user.profile.phone}}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="birthday">Geburtstag</label>
+          <div id="birthday"></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="address">Anschrift</label>
+          <textarea id="address" class="form-control" rows="5"
+                    placeholder="Straße, Hausnummer, Ort">{{user.profile.address}}</textarea>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="gender-radio">Geschlecht</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="gender-radio" id="female" value="female">Weiblich
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="gender-radio" id="male" value="male">Männlich
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 1em">
+      <div class="col-md-4">
+        <label for="teams" style="margin-top: 0.5em">Teams</label>
+        <div id="teams">
+          {{#each teams}}
+            <label class="checkbox-inline">
+              <input type="checkbox" value="{{ _id }}" {{ disabled }} {{ checked }}>{{ name }}
+            </label>
+          {{/each}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="jersey-number">Trikot-Nummer</label>
+          <div class="input-group">
+            <span class="input-group-addon" id="jersey-number-addon">#</span>
+            <input type="text" class="form-control" aria-describedby="jersey-number-addon" id="jersey-number"
+                   placeholder="00" value="{{user.profile.jerseyNumber}}">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="positions">Positionen</label>
+          <div id="positions">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="A">A
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="M">M
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="LSM">LSM
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="D">D
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="G">G
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="_id" value="{{user._id}}">
+    <button type="button" class="btn btn-default" id="abort">Abbrechen</button>
+    <button type="button" class="btn btn-danger hidden-xs" id="delete">Löschen</button>
+    <button type="submit" class="btn btn-primary pull-right">Speichern</button>
+  </form>
+</template>

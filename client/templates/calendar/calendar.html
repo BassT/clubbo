@@ -1,0 +1,32 @@
+<template name="calendar">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Kalendar</h1>
+    </div>
+    <div class="col-md-4 col-md-offset-2">
+      {{> tagFilter tags=tags}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      {{>teamSelectionParagraph}}
+    </div>
+  </div>
+  {{#if multipleSelectedTeamIds}}
+    <div class="row">
+      <div class="col-md-6" id="event-color-legend">
+        Legende:
+        <ul class="list-inline">
+          {{#each context in contexts}}
+            <li class="item">
+              <span style="color: {{context.color}};" class="fa fa-square"></span> {{context.name}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  {{/if}}
+  <div class="row">
+    <div class="col-md-12" id="calendar"></div>
+  </div>
+</template>

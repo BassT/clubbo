@@ -1,0 +1,82 @@
+<template name="eventForm">
+  <form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="title">Titel</label>
+          <input class="form-control" type="text" id="title" placeholder="Titel" value="{{event.title}}">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="start-date">Start-Datum</label>
+          <!--<div id="start-date"></div>-->
+          {{>inlineDatepickerDiv id='start-date' value=(eventStartOrStartParam event startParam)}}
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="start-time">Start-Zeit</label>
+          {{>clockpickerInput id='start-time' value=(eventStartOrStartParam event startParam)}}
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="end-date">End-Datum</label>
+          {{>inlineDatepickerDiv id='end-date' value=(eventEndOrEndParam event endParam)}}
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="end-time">End-Zeit</label>
+          {{>clockpickerInput id='end-time' value=(eventEndOrEndParam event endParam)}}
+        </div>
+      </div>
+    </div>
+    <div class="row" id="context">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="team">Team</label>
+          <select id="team" class="form-control">
+            {{#each team in teams}}
+              <option value="{{ team._id }}" {{teamSelected team event}}>{{ team.name }}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="location">Ort</label>
+          <input class="form-control" type="text" id="location" placeholder="Adresse oder Beschreibung"
+                 value="{{event.location}}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="tags">Tags</label>
+          {{>select2Input id='tags' tags=event.tags}}
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="notes">Notiz</label>
+      <textarea class="form-control" rows="8" id="notes" placeholder="Notiz eingeben">{{event.notes}}</textarea>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="response-required" {{responseRequiredChecked event}}>
+        Anwesenheiten erfassen
+      </label>
+      <label>
+        <input type="checkbox" id="background" {{backgroundChecked event}}>
+        Im Hintergrund anzeigen
+      </label>
+    </div>
+    <input type="hidden" id="_id" value="{{event._id}}">
+    <button type="button" class="btn btn-default" id="abort">Abbrechen</button>
+    <button type="button" class="btn btn-danger" id="delete">Löschen</button>
+    <button type="submit" class="btn btn-primary pull-right">Speichern</button>
+  </form>
+</template>

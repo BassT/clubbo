@@ -1,0 +1,38 @@
+<template name="eventPanel">
+  <div class="col-md-4" style="min-height: 20px">
+    {{#if Template.subscriptionsReady}}
+      <div class="panel {{#if responseMissing event}}panel-primary{{else}}panel-default{{/if}} event-panel"
+           data-event-id="{{event._id}}">
+        <div class="panel-heading">
+          {{event.title}}
+          <span class="label label-info" data-context-id="{{event.teamId}}">{{contextName event}}</span>
+        </div>
+        <div class="panel-body">
+          <p>Datum: {{formatStartAndEnd event.start event.end}}</p>
+          <p>Ort: {{event.location}}</p>
+        </div>
+        <div class="panel-footer">
+          <a href="/events/details/{{event._id}}" class="btn btn-default details">Details</a>
+          {{#if responseRequired event}}
+            <div class="btn-group respond-to-event-btn-group pull-right">
+              <button type="button" class="btn btn-{{responseButtonStyle event}}">{{responseButtonText event}}</button>
+              <button type="button" class="btn btn-{{responseButtonStyle event}} dropdown-toggle"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#" class="instant-response yes">Ja, ich komme</a></li>
+                <li><a href="#" class="instant-response no">Nein, ich komme nicht</a></li>
+                <li class="divider"></li>
+                <li><a href="/events/{{event._id}}/respond" class="respond">Nachricht hinterlassen</a></li>
+              </ul>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    {{else}}
+      {{>loading}}
+    {{/if}}
+  </div>
+</template>

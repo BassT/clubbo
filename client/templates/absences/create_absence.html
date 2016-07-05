@@ -1,0 +1,32 @@
+<template name="createAbsence">
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="start">Startdatum</label>
+          <div id="start"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="end">Enddatum</label>
+          <div id="end"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="note">Bemerkung</label>
+          <input type="text" id="note" class="form-control" placeholder="Urlaub, ...">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <input type="submit" class="btn btn-primary pull-right" value="Speichern">
+        <a href="/users/details/{{currentUser._id}}" class="btn btn-default">Zurück</a>
+      </div>
+    </div>
+  </form>
+</template>

@@ -1,0 +1,7 @@
+<template name="attendanceRatio">
+  {{#if Template.subscriptionsReady}}
+    {{getRatio}}
+  {{else}}
+    <span class="fa fa-spinner fa-spin"></span>
+  {{/if}}
+</template>

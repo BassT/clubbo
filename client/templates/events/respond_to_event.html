@@ -1,0 +1,26 @@
+<template name="respondToEvent">
+  <h1>Antwort für {{ event.title }}</h1>
+  <form>
+    <div class="row" style="margin-bottom: 20px">
+      <div class="col-md-3">
+        <h2>Antwort</h2>
+        <div class="btn-group-vertical" id="respond-buttons" data-toggle="buttons">
+          <label class="btn btn-success">
+            <input type="radio" name="response" autocomplete="off" value="yes"> Ja, ich komme
+          </label>
+          <label class="btn btn-danger">
+            <input type="radio" name="response" autocomplete="off" value="no"> Nein, ich komme nicht
+          </label>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <h2>Nachricht</h2>
+        <textarea class="form-control" rows="5" id="message" title="Nachricht">{{ response.message }}</textarea>
+      </div>
+    </div>
+    <input type="hidden" id="event-id" value="{{ event._id }}">
+    <input type="hidden" id="response-id" value="{{ response._id }}">
+    <button type="button" class="btn btn-default" id="abort">Abbrechen</button>
+    <button type="submit" class="btn btn-primary pull-right">Speichern</button>
+  </form>
+</template>

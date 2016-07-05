@@ -1,0 +1,50 @@
+<template name="attendanceList">
+  <table class="table table-condensed table-hover table-responsive table-striped attendance-list">
+    <thead>
+    <tr>
+      <th>Mitglied</th>
+      {{#each event in eventsForList}}
+        <th>
+          <a href="/events/details/{{ event._id }}">{{ formatDate event.start 'dd, DD.MM'}}: {{ event.title }} ({{ totalAttendance event}} anw.)</a>
+        </th>
+      {{/each}}
+    </tr>
+    </thead>
+    <tbody>
+    {{#each user in users}}
+      <tr data-user-id="{{user._id}}">
+        <td>({{ positions user }}) {{ user.profile.firstName }} {{ user.profile.lastName }}</td>
+        {{#each event in eventsForList}}
+          <td {{cellClass user event}} data-event-id="{{event._id}}">
+            {{#if userHasMessageOrAbsence user event}}
+              {{#if userHasMessage user event}}
+                {{>messageBadge message=(userMessage user event) container='.attendance-list'}}
+              {{else}}
+                {{>messageBadge message=(userAbsence user event) container='.attendance-list'}}
+              {{/if}}
+            {{else}}
+              {{responseValue user event}}
+            {{/if}}
+            {{#if isCurrentUser user}}
+              {{#if userHasResponse user event}}
+                <button class="btn btn-primary btn-xs switch-response pull-right">
+                  <span class="fa fa-refresh"></span>
+                </button>
+              {{else}}
+                <div class="btn-group-xs pull-right">
+                  <button class="btn btn-success add-response attending">
+                    Ja
+                  </button>
+                  <button class="btn btn-danger add-response not-attending">
+                    Nein
+                  </button>
+                </div>
+              {{/if}}
+            {{/if}}
+          </td>
+        {{/each}}
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</template>

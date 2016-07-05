@@ -1,0 +1,44 @@
+<template name="practiceAttendanceRatio">
+  {{#if Template.subscriptionsReady}}
+    <div class="row">
+      <div class="col-md-2">
+        <div class="btn-group">
+          <button class="btn btn-default previous-month">
+            <span class="fa fa-arrow-left"></span>
+          </button>
+          <button class="btn btn-default">
+            {{#if loaded}}
+              <span class="current-month">{{currentMonth}}</span>
+            {{else}}
+              <span class="fa fa-spinner fa-spin"></span>
+            {{/if}}
+          </button>
+          <button class="btn btn-default next-month">
+            <span class="fa fa-arrow-right"></span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-10">
+        {{>teamSelectionParagraph}}
+      </div>
+    </div>
+    <table class="table table-hover tablesorter">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Trainingsbeteiligung</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each user in users}}
+        <tr>
+          <td>{{user.profile.firstName}} {{user.profile.lastName}}</td>
+          <td>{{>attendanceRatio user=user eventIds=eventIds}}</td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    {{>loading}}
+  {{/if}}
+</template>

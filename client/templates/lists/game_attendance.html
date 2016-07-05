@@ -1,0 +1,13 @@
+<template name="gameAttendance">
+  {{#if Template.subscriptionsReady}}
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Übersicht Spieltage</h1>
+        {{>teamSelectionParagraph}}
+        {{> attendanceList eventsForList=upcomingGames users=users attendances=gameResponses}}
+      </div>
+    </div>
+  {{else}}
+    {{>loading}}
+  {{/if}}
+</template>

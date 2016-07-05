@@ -1,0 +1,14 @@
+<template name="teamSelectionParagraph">
+  {{#if Template.subscriptionsReady}}
+    <p id="team-selection">
+      Mitglieder und Events aus folgenden Teams werden angezeigt:
+      {{#each team in selectedTeams}}{{#if team.separator}},{{/if}} <a href="#" class="team selected" data-team-id="{{team._id}}">{{team.name}}</a>{{/each}}.
+      {{#if notAllTeamsSelected}}
+        <br/>Mitglieder und Events aus folgende Teams werden <strong>nicht</strong> angezeigt:
+        {{#each team in notSelectedTeams}}{{#if team.separator}},{{/if}} <a href="#" class="team not-selected" data-team-id="{{team._id}}">{{team.name}}</a>{{/each}}.
+      {{/if}}
+    </p>
+  {{else}}
+    {{> loading}}
+  {{/if}}
+</template>

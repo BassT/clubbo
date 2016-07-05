@@ -1,0 +1,7 @@
+<template name="select2Input">
+  <select class="form-control" id="tags" multiple style="width: 100%;">
+    {{#each tag in tags}}
+      <option value="{{tag}}">{{tag}}</option>
+    {{/each}}
+  </select>
+</template>

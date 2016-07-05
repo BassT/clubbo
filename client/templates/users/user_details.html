@@ -1,0 +1,102 @@
+<template name="userDetails">
+  {{#if Template.subscriptionsReady}}
+    <div class="row">
+      <div class="col-md-9">
+        <h1>
+          {{ user.profile.firstName }} {{ user.profile.lastName }}
+        </h1>
+      </div>
+      <div class="col-md-3">
+        <div class="btn-group pull-right">
+          {{#if userCanEdit}}
+            <a href="/users/edit/{{ user._id }}" class="btn btn-default">
+              Bearbeiten
+            </a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>E-Mail</h3>
+        {{#each user.emails}}
+          <p>{{ address }}</p>
+        {{/each}}
+      </div>
+      <div class="col-md-6">
+        <h3>Telefon</h3>
+        <p>{{ user.profile.phone }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Adresse</h3>
+        <p>{{{ convertLineBreaks user.profile.address }}}</p>
+      </div>
+      <div class="col-md-6">
+        <h3>Geburtstag</h3>
+        <p>{{ formatDate user.profile.birthday 'DD.MM.YYYY'}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Geschlecht</h3>
+        <p>{{ convertGender user.profile.gender }}</p>
+      </div>
+      <div class="col-md-6" id="absences">
+        <h3>
+          Abwesenheiten
+        </h3>
+        {{#if hasAbsences}}
+          <table id="absences-list" class="table table-responsive table-hover table-striped table-condensed">
+            <thead>
+            <tr>
+              <td>Von</td>
+              <td>Bis</td>
+              <td>Notiz</td>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each userAbsences}}
+              <tr>
+                <td>{{ formatDate start 'DD.MM.YYYY' }}</td>
+                <td>{{ formatDate end 'DD.MM.YYYY' }}</td>
+                <td>{{ note }}</td>
+              </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <p>Keine Abwesenheiten vorhanden.</p>
+        {{/if}}
+        {{#if currentIsShownUser}}
+          <a href="/absences/create" class="btn btn-default btn-sm pull-right" id="new-absence">Abwesenheit hinzufügen</a>
+        {{/if}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Position</h3>
+        <p>{{ formatPositions user.profile.positions }}</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Trikotnummer</h3>
+        <p>{{ user.profile.jerseyNumber }}</p>
+      </div>
+      <div class="col-md-4" id="membership">
+        <h3>Teams</h3>
+        <ul class="list-unstyled">
+          {{#each team in teams}}
+            <li>
+              <a href="/teams/{{ team._id }}" class="team">
+                {{ team.name }}
+              </a>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  {{else}}
+    {{>loading}}
+  {{/if}}
+</template>

@@ -1,0 +1,11 @@
+<template name="updateEvent">
+  <div class="row">
+    <div class="col-md-12">
+      {{#if Template.subscriptionsReady}}
+        {{>eventForm action='update' event=event}}
+      {{else}}
+        {{>loading}}
+      {{/if}}
+    </div>
+  </div>
+</template>
