@@ -6,7 +6,6 @@
 @import "custom.bootstrap.mixins.import.less";
 @import "variables.less";
 
-
 // Custom
 // Body =======================================================================
 
@@ -37,14 +36,12 @@ table.tablesorter th {
 
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 
-
 // Navbar =====================================================================
 
 .navbar {
   border-width: 0;
 
   &-default {
-
     .badge {
       background-color: #fff;
       color: @navbar-default-bg;
@@ -52,7 +49,6 @@ table.tablesorter th {
   }
 
   &-inverse {
-
     .badge {
       background-color: #fff;
       color: @navbar-inverse-bg;
@@ -109,7 +105,6 @@ table.tablesorter th {
 
 table,
 .table {
-
   a:not(.btn) {
     text-decoration: underline;
   }
@@ -254,10 +249,10 @@ input {
   }
 
   .disabled {
-    &>a,
-    &>a:hover,
-    &>a:focus,
-    &>span {
+    & > a,
+    & > a:hover,
+    & > a:focus,
+    & > span {
       background-color: @pagination-disabled-bg;
     }
   }
@@ -278,7 +273,6 @@ input {
 }
 
 .alert {
-
   .alert-link {
     color: #fff;
     text-decoration: underline;
@@ -303,7 +297,6 @@ input {
 }
 
 a.list-group-item {
-
   &.active,
   &.active:hover,
   &.active:focus {

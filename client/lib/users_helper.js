@@ -11,29 +11,29 @@ UsersHelper = {};
  * @returns {string} birthdayDate - an ISODate representing the birthday
  */
 
-UsersHelper.getBirthday = function (form) {
-    'use strict';
-    return UsersHelper.getDate(form, '#birthday');
+UsersHelper.getBirthday = function(form) {
+  "use strict";
+  return UsersHelper.getDate(form, "#birthday");
 };
 
-UsersHelper.getAbsenceValidUntil = function (form) {
-    'use strict';
-    return UsersHelper.getDate(form, '#absenceValidUntil');
+UsersHelper.getAbsenceValidUntil = function(form) {
+  "use strict";
+  return UsersHelper.getDate(form, "#absenceValidUntil");
 };
 
-UsersHelper.getDate = function (form, fieldSelector) {
-    'use strict';
-    var date;
+UsersHelper.getDate = function(form, fieldSelector) {
+  "use strict";
+  var date;
 
-    date = form.find(fieldSelector).datepicker('getDate');
+  date = form.find(fieldSelector).datepicker("getDate");
 
-    if (date === null) {
-        date = '';
-    } else {
-        date = date.toISOString();
-    }
+  if (date === null) {
+    date = "";
+  } else {
+    date = date.toISOString();
+  }
 
-    return date;
+  return date;
 };
 
 /**
@@ -41,29 +41,29 @@ UsersHelper.getDate = function (form, fieldSelector) {
  * @param {jQuery} $form
  * @returns {{email: *, profile: {firstName: String, lastName: String, birthday: String, address: String, phone: String, gender: String, jerseyNumber: Number}}}
  */
-UsersHelper.generateUser = function ($form) {
-    'use strict';
-    var teamIds;
-    
-    teamIds = [];
-    $form.find('#teams input:checked').each(function (index, elem) {
-        teamIds.push($(elem).val());
-    });
+UsersHelper.generateUser = function($form) {
+  "use strict";
+  var teamIds;
 
-    return {
-        email: $form.find('#email').val(),
-        profile: {
-            firstName: $form.find('#first-name').val(),
-            lastName: $form.find('#last-name').val(),
-            birthday: UsersHelper.getBirthday($form),
-            address: $form.find('#address').val(),
-            phone: $form.find('#phone').val(),
-            gender: $form.find('input[name="gender-radio"]:checked').val(),
-            jerseyNumber: $form.find('#jersey-number').val(),
-            positions: UsersHelper.getPositions($form),
-            teamIds: teamIds
-        }
-    };
+  teamIds = [];
+  $form.find("#teams input:checked").each(function(index, elem) {
+    teamIds.push($(elem).val());
+  });
+
+  return {
+    email: $form.find("#email").val(),
+    profile: {
+      firstName: $form.find("#first-name").val(),
+      lastName: $form.find("#last-name").val(),
+      birthday: UsersHelper.getBirthday($form),
+      address: $form.find("#address").val(),
+      phone: $form.find("#phone").val(),
+      gender: $form.find('input[name="gender-radio"]:checked').val(),
+      jerseyNumber: $form.find("#jersey-number").val(),
+      positions: UsersHelper.getPositions($form),
+      teamIds: teamIds
+    }
+  };
 };
 
 /**
@@ -73,14 +73,14 @@ UsersHelper.generateUser = function ($form) {
  * @returns {Array}
  */
 
-UsersHelper.getPositions = function ($form) {
-    'use strict';
-    var positions;
+UsersHelper.getPositions = function($form) {
+  "use strict";
+  var positions;
 
-    positions = [];
-    $form.find('#positions input:checked').each(function (index, element) {
-        positions.push($(element).val());
-    });
+  positions = [];
+  $form.find("#positions input:checked").each(function(index, element) {
+    positions.push($(element).val());
+  });
 
-    return positions;
+  return positions;
 };
