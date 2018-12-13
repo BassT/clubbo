@@ -14,7 +14,9 @@ Template.dashboard.onCreated(function() {
 
     template.subscribe("teamsByIds", Session.get("selectedTeamIds"));
 
-    start = moment().format();
+    start = moment()
+      .startOf("day")
+      .format();
     end = moment()
       .add(6, "months")
       .format();

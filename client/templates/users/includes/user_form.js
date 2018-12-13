@@ -4,7 +4,11 @@
 
 Template.userForm.onCreated(function() {
   "use strict";
-  this.subscribe("teamsByIds", Meteor.user().profile.teamIds);
+  var teamIdsWhereAdminOrMember = _.union(
+    Roles.getGroupsForUser(Meteor.user(), "admin"),
+    Meteor.user().profile.teamIds
+  );
+  this.subscribe("teamsByIds", teamIdsWhereAdminOrMember);
 });
 
 Template.userForm.onRendered(function() {

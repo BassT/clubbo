@@ -57,7 +57,7 @@ Meteor.publish("eventsByTimeIntervalAndTagsAndTeamIds", function(
 ) {
   var query;
   query = {
-    teamId: { $in: teamIds },
+    teamId: { $in: teamIds || [] },
     $and: [{ start: { $gt: start } }, { start: { $lt: end } }]
   };
   if (tags.length > 0) {
@@ -74,12 +74,11 @@ Meteor.publish("eventsByTimeIntervalAndTeamIdsPaginated", function(
 ) {
   check(start, String);
   check(start, String);
-  check(teamIds, Array);
   check(limit, Number);
 
   return Events.find(
     {
-      teamId: { $in: teamIds },
+      teamId: { $in: teamIds || [] },
       $and: [{ start: { $gt: start } }, { start: { $lt: end } }]
     },
     {
@@ -123,7 +122,7 @@ Meteor.publish("responsesByUserIdsAndEventIds", function(userIds, eventIds) {
  Teams publications
  ------------------  */
 Meteor.publish("teamsByIds", function(teamIds) {
-  return Teams.find({ _id: { $in: teamIds } });
+  return Teams.find({ _id: { $in: teamIds || [] } });
 });
 
 /*  ------------------
