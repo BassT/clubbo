@@ -3,8 +3,6 @@
     Router, ReactiveVar
  */
 
-//TODO
-
 function userAbsencesQuery(userId) {
   "use strict";
   return {
