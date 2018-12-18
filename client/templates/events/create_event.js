@@ -33,6 +33,14 @@ Template.createEvent.events({
 
     eventObj = EventsHelper.generateEvent(form);
 
+    // get repeat value n from form
+    // generate n events seperated by 1 week
+
+    // Iterating over dates is easier with [moment](https://momentjs.com/docs/#/manipulating/add/)
+    // Start with: eventObj.start (this is a [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
+
+    // Maybe use a for loop?
+
     Events.insert(eventObj, function(error) {
       if (error) {
         bootbox.alert({
@@ -40,6 +48,10 @@ Template.createEvent.events({
           message: error.message
         });
       } else {
+        // Other events
+        // Events.insert(nextEvent)
+
+        // if (noNextEvent)
         Router.go("/calendar");
       }
     });
