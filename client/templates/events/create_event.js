@@ -32,7 +32,10 @@ Template.createEvent.events({
     form = $(e.target);
 
     eventObj = EventsHelper.generateEvent(form);
-
+    
+    if (eventObj.repeat >= 1 && eventObj.repeat <= 24) {
+      
+    }
     // get repeat value n from form
     // generate n events seperated by 1 week
 

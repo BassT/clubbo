@@ -93,6 +93,7 @@ EventsHelper.generateEvent = function($form) {
     location: $form.find("#location").val(),
     notes: $form.find("#notes").val(),
     start: start.format(),
+    repeat: $form.find("#repeat").val(),
     tags: $form.find("#tags").val(),
     title: $form.find("#title").val(),
     responseRequired: EventsHelper.getRespRequired($form),
