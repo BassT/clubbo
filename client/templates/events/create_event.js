@@ -34,7 +34,15 @@ Template.createEvent.events({
     eventObj = EventsHelper.generateEvent(form);
     
     if (eventObj.repeat >= 1 && eventObj.repeat <= 24) {
-      
+      if (eventObj.repeat == 1) {
+        newEventObj = EventsHelper.generateEvent(form);
+        newEventObj = eventObj.add(7, 'days') 
+      } else {
+          var i;
+          for(i = 0; i < eventObj.repeat; i++) {
+            
+          }
+      }
     }
     // get repeat value n from form
     // generate n events seperated by 1 week
